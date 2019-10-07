@@ -1,19 +1,10 @@
-.jumbotron {
-  text-align: center;
-
-
-}
-.container {
-
-}
-
-.jumbodisplay {
-  align-items: center;
+.midsection1 {
+  display: block;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../../assets/bookshelf1.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   height: auto;
   justify-content: center;
   text-align: center;
-  width: auto;
 }

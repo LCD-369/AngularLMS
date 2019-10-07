@@ -7,6 +7,14 @@ import { AppHeaderComponent } from './app-header/app-header.component';
 import { JumbotronComponent } from './jumbotron/jumbotron.component';
 import { FooterComponent } from './footer/footer.component';
 import { AltloginComponent } from './altlogin/altlogin.component';
+import { BannerComponent } from './banner/banner.component';
+import { MidsectionComponent } from './midsection/midsection.component';
+import { EndsectionComponent } from './endsection/endsection.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminhomeComponent } from './adminhome/adminhome.component';
+import { HomeComponent } from './home/home.component';
+import { AuthortableComponent } from './authortable/authortable.component';
+
 
 @NgModule({
   declarations: [
@@ -14,11 +22,18 @@ import { AltloginComponent } from './altlogin/altlogin.component';
     AppHeaderComponent,
     JumbotronComponent,
     FooterComponent,
-    AltloginComponent
+    AltloginComponent,
+    BannerComponent,
+    MidsectionComponent,
+    EndsectionComponent,
+    AdminhomeComponent,
+    HomeComponent,
+    AuthortableComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
