@@ -1,30 +1,68 @@
+<div class="container">
+<button class="btn btn-raised btn-info m-1" type="button" data-toggle="modal"
+data-target="#authorModal">Add Author</button>
 <table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">id</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Name</th>
+      <th scope="col">Edit/Delete</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngFor="let author of authors">
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
+      <th scope="row">{{ author.id }}</th>
+      <td>{{ author.name }}</td>
+      <td><button class="btn btn-raised btn-info m-1" type="button">Update</button>
+          <button class="btn btn-raised btn-info m-1" type="button">Delete</button></td>
     </tr>
   </tbody>
 </table>
+<! -- Modal -->
+<div class="modal fade" id="authorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content p-5">
+      <form #authorForm="ngForm" (ngSubmit)="onSubmit(authorForm)">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Author ID</label>
+          <input
+          type="text"
+          [(ngModel)]="author.id"
+          [ngClass]="{'is-invalid':authoridVal.errors && authoridVal.touched}"
+          class="form-control"
+          name="id"
+          placeholder="author id"
+          #authoridVal="ngModel"
+          required
+          minlength="1"
+          >
+          <div [hidden]="!authoridVal.errors?.required" class="invalid-feedback">
+            Author id required
+          </div>
+          <div [hidden]="!authoridVal.errors?.required" class="invalid-feedback">
+            Minimum length of 1 digit required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Author Name</label>
+          <input
+          type="text"
+          [(ngModel)]="author.name"
+          [ngClass]="{'is-invalid':authornameVal.errors && authornameVal.touched}"
+          class="form-control"
+          name="name"
+          placeholder="author name"
+          #authornameVal="ngModel"
+          required
+          minlength="1"
+          >
+          <div [hidden]="!authornameVal.errors?.required" class="invalid-feedback">
+            Author name required
+          </div>
+        </div>
+        <button [disabled]="!authorForm.form.valid" type="submit" class="btn btn-raised btn-info">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+</div>

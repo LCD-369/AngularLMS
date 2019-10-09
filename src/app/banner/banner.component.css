@@ -8,7 +8,6 @@ body {
   align-items: center;
 }
 
-
 .displayBackground {
   /* background-image: url("../../assets/bg2.png"); */
   background-color: rgb(50, 56, 62);
@@ -20,7 +19,6 @@ body {
   text-align: center;
   width: auto;
 }
-
 
 .border-animation {
   --border-width: 0.1em;
@@ -145,8 +143,6 @@ body {
   }
 }
 
-
-
 /* @-webkit-keyframes afterBorders {
   0% {
     top: calc(var(--border-width) * -1);
@@ -216,7 +212,6 @@ body {
   }
 } */
 
-
 @-webkit-keyframes borderColors {
   0% {
     border-top-color: transparent;
@@ -270,7 +265,6 @@ body {
     border-left-color: var(--color);
   }
 }
-
 
 @-webkit-keyframes background {
   to {

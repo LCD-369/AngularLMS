@@ -14,7 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminhomeComponent } from './adminhome/adminhome.component';
 import { HomeComponent } from './home/home.component';
 import { AuthortableComponent } from './authortable/authortable.component';
-
+import { FormsModule } from '@angular/Forms';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -33,9 +34,10 @@ import { AuthortableComponent } from './authortable/authortable.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
