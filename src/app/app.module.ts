@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http'
 import { AppComponent } from './app.component';
 import { AppHeaderComponent } from './app-header/app-header.component';
 import { JumbotronComponent } from './jumbotron/jumbotron.component';
@@ -15,7 +15,10 @@ import { AdminhomeComponent } from './adminhome/adminhome.component';
 import { HomeComponent } from './home/home.component';
 import { AuthortableComponent } from './authortable/authortable.component';
 import { FormsModule } from '@angular/Forms';
-import { DataService } from './services/data.service';
+import { AuthorService } from './services/author.service';
+import { PostsComponent } from './posts/posts.component';
+import { PostService } from './services/post.service';
+import { PostFormComponent } from './post-form/post-form.component';
 
 @NgModule({
   declarations: [
@@ -29,15 +32,18 @@ import { DataService } from './services/data.service';
     EndsectionComponent,
     AdminhomeComponent,
     HomeComponent,
-    AuthortableComponent
+    AuthortableComponent,
+    PostsComponent,
+    PostFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [DataService],
+  providers: [AuthorService, PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
