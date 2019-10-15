@@ -1,6 +1,8 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Author } from '../models/Author';
 import { AuthorService } from '../services/author.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-post-form',
@@ -9,31 +11,32 @@ import { AuthorService } from '../services/author.service';
 })
 export class PostFormComponent implements OnInit {
   @Output() newAuthor: EventEmitter<Author> = new EventEmitter();
-  @Output() updatedAuthor: EventEmitter<Author> = new EventEmitter();
-  @Input() currentAuthor: Author;
-  @Input() isEdit: boolean;
+  result: Author;
+  addform: FormGroup;
 
-
-  constructor(private authorService: AuthorService) { }
+  constructor(private authorService: AuthorService) {}
 
   ngOnInit() {
+    this.addform = new FormGroup({
+      authorId: new FormControl(null),
+      name: new FormControl(null)
+    });
+    this.result = ({
+      authorId: null,
+      name: ''
+    });
   }
 
-  addAuthor(authorId, authorName) {
-    if(!authorId || !authorName) {
-      alert('Missing required field');
-    } else {
-      this.authorService.saveAuthor({authorId, authorName} as Author).subscribe
-      (author => {
-        this.newAuthor.emit(author);
+
+
+  addAuthor() {
+      this.result.authorId = this.addform.get('authorId').value;
+      this.result.name = this.addform.get('name').value;
+      this.authorService.saveAuthor(this.result).subscribe
+      (result => {
+        this.newAuthor.emit(this.result);
       });
-    }
-  }
-  updateAuthor() {
-    this.authorService.updateAuthorInfo(this.currentAuthor).subscribe(author => {
-      this.isEdit = false;
-      this.updatedAuthor.emit(author);
-    })
-  }
+      console.log(this.result);
 
+  }
 }

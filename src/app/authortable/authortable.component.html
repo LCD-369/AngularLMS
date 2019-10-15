@@ -1,5 +1,6 @@
 <div class="container">
-  <button (click)="createAuthor()" class="btn btn-raised btn-info m-1" data-toggle="modal" data-target="#authorModal">Add Author</button>
+  <button class="btn btn-raised btn-info m-1" data-toggle="modal" data-target="#authorAddModal">Add Author</button>
+  <h5 *ngIf="isLoading">Loading...</h5>
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -11,19 +12,26 @@
     <tbody *ngFor="let author of authors">
       <tr>
         <td>{{ author.authorId }}</td>
-        <td>{{ author.authorName }}</td>
-        <td><button (click)="editAuthor(author)" class="btn btn-raised btn-info m-1" data-toggle="modal" data-target="#authorModal">Update</button>
-          <button class="btn btn-raised btn-info m-1" type="button">Delete</button>
+        <td>{{ author.name }}</td>
+        <td><button (click)="editAuthor(author)" class="btn btn-raised btn-info m-1" data-toggle="modal" data-target="#authorEditModal">Update</button>
+          <button (click)="removeAuthor(author)" class="btn btn-raised btn-info m-1" type="button">Delete</button>
         </td>
       </tr>
     </tbody>
   </table>
   <! -- Modal -->
-    <div class="modal fade" id="authorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="authorAddModal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content p-5">
-          <app-post-form [currentAuthor]="currentAuthor" [isEdit]="isEdit" (newAuthor)="onNewAuthor($event)" (updatedAuthor)="onUpdatedAuthor($event)"></app-post-form>
+          <app-post-form (newAuthor)="onNewAuthor($event)"></app-post-form>
         </div>
       </div>
     </div>
+    <!-- <div class="modal fade" id="authorEditModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content p-5">
+          <app-put-form [currentAuthor]="currentAuthor" (updatedAuthor)="onUpdatedAuthor($event)"></app-put-form>
+        </div>
+      </div>
+    </div> -->
 </div>

@@ -1,29 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Author } from '../models/Author';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { map, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
-}
 
 @Injectable()
 export class AuthorService {
-  postUrl: string = 'http://localhost:8082/administrator/author/';
+  postUrl = 'http://localhost:8082/administrator/author/';
 
   constructor(private http: HttpClient) { }
 
-  getAuthors(): Observable<Author[]> {
-    return this.http.get<Author[]>(this.postUrl);
+  private handleError(error: HttpErrorResponse) {
+    console.log(error.message);
+    return throwError('A data error occurred, please try again.');
   }
 
-  saveAuthor(author: Author): Observable<Author> {
-    return this.http.post<Author>(this.postUrl, author, httpOptions);
+  getAuthors() {
+    return this.http.get<Author[]>(this.postUrl)
+    .pipe(catchError(this.handleError));
   }
 
-  updateAuthorInfo(author: Author): Observable<Author> {
-    const url = '${this.postUrl}${author.authorId}';
-    return this.http.put<Author>(url, author, httpOptions);
+  saveAuthor(author: Author) {
+    console.log(author);
+    return this.http.post(this.postUrl, author).pipe(catchError(this.handleError));
   }
+
+  deleteAuthor(author: Author) {
+    const url = 'http://localhost:8082/administrator/author/${author.authorId}';
+    return this.http.delete(url);
+  }
+
+  updateAuthorInfo(author: Author) {
+    const url = 'http://localhost:8082/administrator/author/${author.authorId}';
+    return this.http.put<Author>(url, author)
+    .pipe(catchError(this.handleError));
+  }
+
+
 
 }
