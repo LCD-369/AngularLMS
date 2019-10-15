@@ -1,17 +1,17 @@
-<!-- <form [formGroup]="editform" (ngSubmit)="updateAuthor()">
-  <div class="form-group">
+<form [formGroup]="editform" (ngSubmit)="updateAuthor()">
+
     <label for="authorId">Author ID</label>
-      <input type="text" id="authorId" formControlName="authorId" class="form-control">
-  </div>
-  <span *ngIf="editform.get('authorId').valid && editform.get('authorId').touched" class="error">
-    Name has invalid characters
-  </span>
-  <div class="form-group">
+      <input type="text" formControlName="authorId" class="form-control">
+
+      <!-- <span *ngIf="editform.get('authorId').valid && editform.get('authorId').touched" class="error">
+        Name has invalid characters
+      </span> -->
+
     <label for="name">Author Name</label>
-    <input type="text" id="name" formControlName="name">
-    <span *ngIf="editform.get('name').valid && editform.get('name').touched" class="error">
-      Name has invalid characters
-    </span>
-  </div>
+    <input type="text" formControlName="name">
+        <!-- <span *ngIf="editform.get('name').valid && editform.get('name').touched" class="error">
+          Name has invalid characters
+        </span> -->
+
   <button type="submit" [disabled]="!editform.valid" class="btn btn-raised btn-info">Add</button>
-</form> -->
+</form>

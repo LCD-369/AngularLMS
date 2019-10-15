@@ -14,6 +14,7 @@ import { AdminhomeComponent } from './adminhome/adminhome.component';
 import { HomeComponent } from './home/home.component';
 import { AuthortableComponent } from './authortable/authortable.component';
 import { ReactiveFormsModule } from '@angular/Forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AuthorService } from './services/author.service';
 import { PostFormComponent } from './post-form/post-form.component';
@@ -39,7 +40,8 @@ import { PutFormComponent } from './put-form/put-form.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
   providers: [AuthorService],
   bootstrap: [AppComponent]

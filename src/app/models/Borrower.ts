@@ -1,6 +1,6 @@
 export interface Borrower {
   cardNo: number;
   name: string;
-  address: String;
+  address: string;
   phone: string;
 }

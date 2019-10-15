@@ -1,6 +1,8 @@
 <div class="container">
-  <button class="btn btn-raised btn-info m-1" data-toggle="modal" data-target="#authorAddModal">Add Author</button>
-  <h5 *ngIf="isLoading">Loading...</h5>
+    <div class="uploader-status p-2">
+        <mat-spinner *ngIf="isLoading" class="m-auto"> </mat-spinner>
+    </div>
+  <button class="btn btn-raised btn-info m-auto" data-toggle="modal" data-target="#authorAddModal">Add Author</button>
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -27,11 +29,11 @@
         </div>
       </div>
     </div>
-    <!-- <div class="modal fade" id="authorEditModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="authorEditModal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content p-5">
           <app-put-form [currentAuthor]="currentAuthor" (updatedAuthor)="onUpdatedAuthor($event)"></app-put-form>
         </div>
       </div>
-    </div> -->
+    </div>
 </div>

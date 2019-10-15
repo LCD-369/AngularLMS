@@ -8,7 +8,7 @@ import { throwError } from 'rxjs';
 
 @Injectable()
 export class AuthorService {
-  postUrl = 'http://localhost:8082/administrator/author/';
+postUrl = 'http://localhost:8082/administrator/author/';
 
   constructor(private http: HttpClient) { }
 

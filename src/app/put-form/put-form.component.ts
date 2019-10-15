@@ -23,9 +23,10 @@ export class PutFormComponent implements OnInit {
   }
 
   updateAuthor() {
-    this.authorService.updateAuthorInfo(this.currentAuthor).subscribe(author => {
-      this.updatedAuthor.emit(author);
+    this.authorService.updateAuthorInfo(this.currentAuthor).subscribe(currentAuthor => {
+      this.updatedAuthor.emit(this.currentAuthor);
     });
+    console.log(this.currentAuthor);
   }
 
 }

@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css",
               "node_modules/wowjs/dist/wow.js",
               "node_modules/animate.css/animate.css"
@@ -122,6 +123,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "AngularLMS-Master"
 }
