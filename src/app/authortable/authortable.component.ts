@@ -9,15 +9,11 @@ import { AuthorService } from '../services/author.service';
 })
 
 export class AuthortableComponent implements OnInit {
-  authors: Author[] = [];
+  authors: Author[];
   isLoading: boolean;
-  currentAuthor: Author = {
-    authorId: 0,
-    name: ''
-  }
+  currentAuthor: Author;
 
-  constructor(private authorService: AuthorService) {
-  }
+  constructor(private authorService: AuthorService) {}
 
   ngOnInit() {
     this.isLoading = true;
@@ -25,7 +21,6 @@ export class AuthortableComponent implements OnInit {
       this.authors = authors;
       this.isLoading = false;
     });
-
   }
 
   onNewAuthor(author: Author) {
@@ -41,16 +36,17 @@ export class AuthortableComponent implements OnInit {
       if(author.authorId === cur.authorId) {
         this.authors.splice(index, 1);
         this.authors.unshift(author);
-        this.currentAuthor = {
-          authorId: 0,
-          name: ''
-        }
       }
     })
   }
 
   removeAuthor(author: Author){
     this.authorService.deleteAuthor(author).subscribe();
+    this.authors.forEach((cur, index) => {
+      if(author.authorId === cur.authorId) {
+        this.authors.unshift(author);
+      }
+    })
   }
 
 }

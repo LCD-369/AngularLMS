@@ -13,7 +13,6 @@ postUrl = 'http://localhost:8082/administrator/author/';
   constructor(private http: HttpClient) { }
 
   private handleError(error: HttpErrorResponse) {
-    console.log(error.message);
     return throwError('A data error occurred, please try again.');
   }
 
@@ -23,19 +22,18 @@ postUrl = 'http://localhost:8082/administrator/author/';
   }
 
   saveAuthor(author: Author) {
-    console.log(author);
     return this.http.post(this.postUrl, author).pipe(catchError(this.handleError));
   }
 
   deleteAuthor(author: Author) {
-    const url = 'http://localhost:8082/administrator/author/${author.authorId}';
-    return this.http.delete(url);
+    const id = author.authorId;
+    const authorid = id.toString();
+    const url = this.postUrl.concat(authorid);
+    return this.http.delete(url).pipe(catchError(this.handleError));
   }
 
   updateAuthorInfo(author: Author) {
-    const url = 'http://localhost:8082/administrator/author/${author.authorId}';
-    return this.http.put<Author>(url, author)
-    .pipe(catchError(this.handleError));
+    return this.http.put(this.postUrl, author).pipe(catchError(this.handleError));
   }
 
 

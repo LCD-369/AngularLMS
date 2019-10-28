@@ -19,15 +19,13 @@ export class PostFormComponent implements OnInit {
   ngOnInit() {
     this.addform = new FormGroup({
       authorId: new FormControl(null),
-      name: new FormControl(null)
+      name: new FormControl(null, [Validators.required, Validators.minLength(2)])
     });
     this.result = ({
       authorId: null,
       name: ''
     });
   }
-
-
 
   addAuthor() {
       this.result.authorId = this.addform.get('authorId').value;
@@ -36,7 +34,6 @@ export class PostFormComponent implements OnInit {
       (result => {
         this.newAuthor.emit(this.result);
       });
-      console.log(this.result);
-
+        console.log(this.result);
   }
 }

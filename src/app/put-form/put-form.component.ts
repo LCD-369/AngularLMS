@@ -12,21 +12,26 @@ export class PutFormComponent implements OnInit {
   @Output() updatedAuthor: EventEmitter<Author> = new EventEmitter();
   @Input() currentAuthor: Author;
   editform: FormGroup;
+  result: Author;
 
   constructor(private authorService: AuthorService) { }
 
   ngOnInit() {
     this.editform = new FormGroup({
-      authorId: new FormControl(this.currentAuthor.authorId, Validators.compose([Validators.required])),
-      name: new FormControl(this.currentAuthor.name, Validators.compose([Validators.required]))
+      name: new FormControl('', [Validators.required, Validators.minLength(2)])
+    });
+    this.result = ({
+      authorId: null,
+      name: ''
     });
   }
 
   updateAuthor() {
-    this.authorService.updateAuthorInfo(this.currentAuthor).subscribe(currentAuthor => {
-      this.updatedAuthor.emit(this.currentAuthor);
+    this.result.authorId = this.currentAuthor.authorId;
+    this.result.name = this.editform.get('name').value;
+    this.authorService.updateAuthorInfo(this.result).subscribe(result => {
+      this.updatedAuthor.emit(this.result);
     });
-    console.log(this.currentAuthor);
   }
 
 }
